@@ -1,2 +1,3 @@
 results/
 fine-tuned-gpt2/
+.env
