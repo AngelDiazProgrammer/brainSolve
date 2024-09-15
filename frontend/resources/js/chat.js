@@ -4,20 +4,31 @@ document.getElementById('message-form').addEventListener('submit', function(even
     event.preventDefault();
 
     var prompt = document.getElementById('message-input').value;
-    var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // Obtener el token CSRF
+    var token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    // Realizar la solicitud a la API Flask
+    // Mostrar "Escribiendo..." mientras se espera la respuesta
+    var typingIndicator = document.getElementById('typing-indicator');
+    typingIndicator.style.display = 'block'; // Mostrar el indicador
+
     fetch('/generate', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': token // Agregar el token CSRF al encabezado
+            'X-CSRF-TOKEN': token
         },
         body: JSON.stringify({ prompt: prompt }),
     })
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        return response.json();
+    })
     .then(data => {
-        // Mostrar la respuesta generada en el chat
+        // Ocultar "Escribiendo..." y mostrar respuesta
+        typingIndicator.style.display = 'none';
+
+        // Agregar el mensaje generado al chat
         var chatMessages = document.getElementById('chat-messages');
         chatMessages.innerHTML += '<div class="message">' + data.generated_text + '</div>';
 
@@ -26,5 +37,8 @@ document.getElementById('message-form').addEventListener('submit', function(even
     })
     .catch(error => {
         console.error('Error al procesar la solicitud:', error);
+        typingIndicator.style.display = 'none'; // Ocultar en caso de error
     });
 });
+console.log('Prompt:', prompt);
+console.log('Token:', token);

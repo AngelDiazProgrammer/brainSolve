@@ -17,7 +17,7 @@ h1 {
 h2 {
     color: #b22222; /* Rojo oscuro */
     text-align: center;
-    font-size: 2 rem;
+    font-size: 2rem;
     margin-top: 50px;
 }
 
@@ -90,6 +90,43 @@ button:focus {
 #send-button:hover {
     background-color: #ff6347;
 }
+
+/*Robert*/
+
+#box-img{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+#robert{
+    width: 200px;
+    align-items: center;
+}
+
+/* Estilos para el indicador de "Escribiendo..." */
+#typing-indicator {
+    font-style: italic;
+    color: grey;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#dots {
+    font-weight: bold;
+    display: inline-block;
+    animation: dots 1s steps(3, end) infinite;
+}
+
+/* Animación de puntos */
+@keyframes dots {
+    0%, 20% { content: ''; }
+    40% { content: '.'; }
+    60% { content: '..'; }
+    80% { content: '...'; }
+    100% { content: ''; }
+}
+
 
 /* Responsividad */
 @media screen and (max-width: 768px) {
