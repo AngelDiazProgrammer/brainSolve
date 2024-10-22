@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function mostrarChat()
+    public function mostrarPrincipal()
     {
         $nombre_usuario = session('nombre_usuario');
-        return view('chat', compact('nombre_usuario')); // Retorna la vista chat
+        return view('principal', compact('nombre_usuario')); // Retorna la vista chat
     }
 }

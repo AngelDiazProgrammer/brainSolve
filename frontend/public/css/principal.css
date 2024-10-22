@@ -1,0 +1,185 @@
+/* General styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+/* Navbar (parte superior) */
+nav {
+    width: 80%;
+    height: 45px; /* Reducido el alto del navbar */
+    background-color: #b22222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombreado */
+    z-index: 10; /* Navbar delante de la barra lateral */
+    position: fixed; /* Fija la navbar para que se mueva con el scroll */
+    top: 5px;
+    left: 50%; /* Centra la barra horizontalmente */
+    transform: translateX(-50%); /* Ajusta el centro */
+    border-radius: 5px;
+}
+
+/* Ajuste para que el contenido quede debajo del navbar */
+body {
+    padding-top: 45px; /* Para que el contenido no se superponga con la navbar */
+}
+
+#box-img img {
+    height: 25px;
+}
+
+#bienvenida p {
+    color: white;
+    font-weight: bold;
+}
+
+#cerrar-sesion button {
+    background-color: #ffffff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+/* Efecto hover: Cambiar el fondo y el color del texto */
+#cerrar-sesion button:hover {
+    background-color: #b22222; /* Fondo blanco cuando el cursor está encima */
+    color: rgb(255, 255, 255); /* Texto rojo al pasar el cursor */
+
+}
+
+
+#cerrar-sesion button p {
+    margin: 0;
+    font-weight: bold;
+}
+
+
+/* Left bar (parte izquierda) */
+#bar-left {
+    width: 120px; /* Ancho de la barra izquierda */
+    height: 650px; /* Altura fija */
+    margin-top: 40px; /* Espacio para el navbar */
+    margin-bottom: 20px; /* Espacio inferior */
+    background-color: #d3d3d3; /* Gris beige amigable */
+    position: fixed;
+    top: 45px; /* Ajustar para que la barra esté justo debajo de la navbar */
+    left: 10px;
+    box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    z-index: 1;
+
+    /* Centramos el contenido verticalmente y horizontalmente */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centramos los elementos verticalmente */
+    align-items: center; /* Centramos los elementos horizontalmente */
+}
+
+/* Espaciado entre los párrafos */
+#bar-left p {
+    margin: 15px 0; /* Espacio superior e inferior */
+    text-align: center; /* Alinea el texto al centro */
+}
+
+/* Botón y enlace */
+#bar-left a {
+    text-decoration: none;
+    color: #333;
+}
+
+#bar-left button {
+    width: 90px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #b22222;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+}
+
+/* Efecto hover: Cambiar el fondo y el color del texto */
+#bar-left button:hover {
+    background-color: white; /* Fondo blanco cuando el cursor está encima */
+    color: #b22222; /* Texto rojo al pasar el cursor */
+    font-weight: bold;
+}
+
+/* Principal container (contenido principal) */
+#principal-container {
+    width: 80%;
+    margin-left: 150px; /* Espacio a la izquierda para la barra lateral */
+    margin-top: 40px; /* Espacio para el navbar */
+    margin-bottom: 20px; /* Espacio inferior */
+    padding: 20px;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombreado */
+    border-radius: 8px;
+    min-height: 650px; /* Ajusta el contenedor para que no sea muy alto */
+    overflow-y: auto;
+    position: relative; /* Asegúrate de que el contenido dentro se ajuste correctamente */
+}
+
+
+/* Responsive design */
+
+/* Para pantallas pequeñas (menores de 768px) */
+@media screen and (max-width: 768px) {
+    #bar-left {
+        width: 80px; /* Reducir la barra lateral en pantallas más pequeñas */
+    }
+
+    #principal-container {
+        margin-left: 100px; /* Ajustar margen en pantallas pequeñas */
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 10px;
+    }
+
+    #box-img img {
+        height: 30px;
+    }
+
+    #bienvenida p, #cerrar-sesion button p {
+        font-size: 14px;
+    }
+}
+
+/* Para pantallas muy pequeñas (menores de 480px) */
+@media screen and (max-width: 480px) {
+    #bar-left {
+        width: 60px; /* Aún más pequeña la barra lateral */
+    }
+
+    #principal-container {
+        margin-left: 70px; /* Ajustar margen en pantallas muy pequeñas */
+        padding: 10px;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px;
+    }
+
+    #box-img img {
+        height: 25px;
+    }
+
+    #bienvenida p, #cerrar-sesion button p {
+        font-size: 12px;
+    }
+}

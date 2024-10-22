@@ -42,7 +42,7 @@ class LoginController extends Controller
             }
 
             // Redirigir al dashboard o ruta deseada
-            return redirect()->intended('chat');
+            return redirect()->intended('principal');
         } else {
             // Fallo en la autenticación
             return back()->withErrors([

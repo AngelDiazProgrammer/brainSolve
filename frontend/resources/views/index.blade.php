@@ -8,11 +8,31 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Index</h1>
+<nav id="barra_superior">
+    <form action="{{ route('login') }}" method="GET">
+        <button type="submit">Login</button>
+    </form>
+    <button type="submit">Quienes somos</button>
+    <button type="submit">Allowed</button>
+</nav>
+<h1>Index</h1>
+<div class="grid grid-cols-3 gap-7">
 
-<!-- En vista1.blade.php -->
-<form action="{{ route('login') }}" method="GET">
-    <button type="submit">Login</button>
-</form>
+	<!-- Each <div> is a single column.
+	Place some content inside to see the effect. -->
+	<div>
+        <h1>Index</h1>
+    </div>
+
+	<div>
+        <h1>Index</h1>
+    </div>
+
+	<div>
+        <h1>Index</h1>
+    </div>
+
+</div>
+
 </body>
 </html>
