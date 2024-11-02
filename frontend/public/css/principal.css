@@ -30,7 +30,7 @@ body {
 }
 
 #box-img img {
-    height: 25px;
+    height: 50px;
 }
 
 #bienvenida p {
@@ -62,57 +62,42 @@ body {
 }
 
 
-/* Left bar (parte izquierda) */
-#bar-left {
-    width: 120px; /* Ancho de la barra izquierda */
-    height: 650px; /* Altura fija */
-    margin-top: 40px; /* Espacio para el navbar */
-    margin-bottom: 20px; /* Espacio inferior */
-    background-color: #d3d3d3; /* Gris beige amigable */
-    position: fixed;
-    top: 45px; /* Ajustar para que la barra esté justo debajo de la navbar */
-    left: 10px;
-    box-shadow: 4px 0px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    z-index: 1;
-
-    /* Centramos el contenido verticalmente y horizontalmente */
+/* Contenedor de tarjetas */
+#card-container {
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centramos los elementos verticalmente */
-    align-items: center; /* Centramos los elementos horizontalmente */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 50px;
 }
 
-/* Espaciado entre los párrafos */
-#bar-left p {
-    margin: 15px 0; /* Espacio superior e inferior */
-    text-align: center; /* Alinea el texto al centro */
+/* Estilos de cada tarjeta */
+.card {
+    width: 150px;
+    background-color: none;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+
 }
 
-/* Botón y enlace */
-#bar-left a {
-    text-decoration: none;
-    color: #333;
-}
-
-#bar-left button {
-    width: 90px;
-    padding: 5px 10px;
+.card button {
+    width: 100%;
+    padding: 10px;
     cursor: pointer;
-    background-color: #b22222;
-    color: white;
+    background-color: #b22222; /* Rojo oscuro */
+    color: white; /* Texto blanco */
     border: none;
     border-radius: 5px;
     font-weight: bold;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave */
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Efecto hover: Cambiar el fondo y el color del texto */
-#bar-left button:hover {
-    background-color: white; /* Fondo blanco cuando el cursor está encima */
+.card button:hover {
+    background-color: white; /* Fondo blanco al pasar el cursor */
     color: #b22222; /* Texto rojo al pasar el cursor */
-    font-weight: bold;
 }
+
 
 /* Principal container (contenido principal) */
 #principal-container {
@@ -129,6 +114,12 @@ body {
     position: relative; /* Asegúrate de que el contenido dentro se ajuste correctamente */
 }
 
+
+
+#box-img-principal img {
+    height: 300px;
+    margin: 0px 0px 0px 40%;
+}
 
 /* Responsive design */
 

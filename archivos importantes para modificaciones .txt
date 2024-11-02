@@ -1,2 +1,20 @@
+//conexión a dominio
 config/ldap
 env
+
+//Ubicación Script de cambio de contraseñas
+cambiar-contraseña.py / backend
+
+
+//Puertos de conexión:
+
+Laravel: 8000
+php artisan serve
+
+App.py(IA): 5000
+python app.py
+
+cambiar-contraseñas.py:
+python -m uvicorn cambiar-contraseña:app --reload --port 8080
+
+

@@ -19,39 +19,37 @@ form {
     margin: 20px 0;
 }
 
-/* Botón en el formulario de index */
-#message-input button {
-    background-color: #b22222;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Contenedor del chat */
+#chat-container {
+    display: flex; /* Mantiene la imagen y el chat en línea */
+    align-items: flex-start; /* Alineación vertical al inicio */
+    justify-content:center; /* Centra horizontalmente */
+    margin-top: 60px; /* Margen superior para separación del encabezado */
 }
 
-button:hover {
-    background-color: #ff6347; /* Rojo más claro */
-}
-
-button:focus {
-    outline: none;
-}
-
-/* Chat container */
+/* Chat messages */
 #chat-messages {
     width: 90%;
     max-width: 800px;
-    margin: 20px auto;
+    margin: 20px 0; /* Cambiar el margen para alinear mejor */
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-height: 400px;
-    overflow-y: auto;
+    max-height: 400px; /* Limita la altura del contenedor */
+    overflow-y: auto; /* Permite desplazamiento vertical */
 }
 
+/* Imagen */
+#box-img-chat {
+    margin-right: 20px; /* Espacio entre la imagen y el chat */
+}
+
+#box-img-chat img {
+    height: 100px; /* Ajusta el tamaño de la imagen según sea necesario */
+}
+
+/* Formulario de mensaje */
 #message-form {
     display: flex;
     justify-content: center;
@@ -67,20 +65,39 @@ button:focus {
     margin-right: 10px;
 }
 
-#send-button {
-    background-color: #b22222;
-    color: white;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+/* Botón Dashboard */
+.card {
+    margin-bottom: 20px; /* Ajusta este margen si es necesario */
 }
 
-#send-button:hover {
-    background-color: #ff6347;
+.card button {
+    width: 100%;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #b22222; /* Rojo oscuro */
+    color: white; /* Texto blanco */
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
+
+.card button:hover {
+    background-color: white; /* Fondo blanco al pasar el cursor */
+    color: #b22222; /* Texto rojo al pasar el cursor */
+}
+
+/* Estilo para el indicador de escritura */
+#typing-indicator {
+    display: none; /* Ocultarlo por defecto */
+    text-align: center; /* Centrar el texto */
+    margin-top: 10px; /* Espacio superior */
+}
+
+#dots {
+    font-size: 1.5rem; /* Ajusta el tamaño del texto */
+}
+
 
 
 /* Responsividad */
@@ -101,6 +118,6 @@ button:focus {
 
     #chat-messages {
         max-width: 100%;
-        margin: 10px auto;
+        margin: 10px 0; /* Ajuste del margen */
     }
 }

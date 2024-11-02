@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     const cambiarPasswordBtn = document.getElementById('cambiar-password');
     const soporteChatBtn = document.getElementById('soportechat');
+    const entrenamientoChatBtn = document.getElementById('entrenamiento');
+    const rollbacChatkBtn = document.getElementById('rollback');
     const principalContainer = document.getElementById('principal-container');
 
     // Función para cargar contenido en el contenedor
@@ -31,35 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
         loadContent('/soportechat'); // Cambia a la vista de soporte chat
     });
 
-    // Función para inicializar el chat
-    function initializeChat() {
-        const form = document.getElementById('message-form');
-        if (form) { // Asegúrate de que el formulario exista
-            form.addEventListener('submit', function(event) {
-                event.preventDefault(); // Prevenir el comportamiento por defecto
+    entrenamientoChatBtn.addEventListener('click',function(){
+        loadContent('/train');// Cambiar a la vista de entrenamiento del chat
+    });
+    rollbacChatkBtn.addEventListener('click', function(){
+        loadContent('/rollback');//cambiar a la vista para restaurar una version del chat
+    });
 
-                const input = document.getElementById('message-input');
-                const message = input.value;
-                if (message) {
-                    // Lógica para enviar el mensaje
-                    const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // Obtener el token CSRF
-                    fetch('/generate', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': token // Agregar el token CSRF al encabezado
-                        },
-                        body: JSON.stringify({ prompt: message }),
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        const chatMessages = document.getElementById('chat-messages');
-                        chatMessages.innerHTML += '<div class="message">' + data.generated_text + '</div>'; // Agregar el mensaje generado al chat
-                        input.value = ''; // Limpiar el campo de entrada
-                    })
-                    .catch(error => console.error('Error al procesar la solicitud:', error));
-                }
-            });
-        }
-    }
+
+
 });

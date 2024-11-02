@@ -1,16 +1,11 @@
-import os 
-import shutil
-import time
-import logging
-from transformers import GPT2LMHeadModel, GPT2Tokenizer, Trainer, TrainingArguments
-from datasets import load_dataset, DatasetDict
-
-# Configurar logging
-logging.basicConfig(level=logging.INFO)
+from transformers import BloomForCausalLM, BloomTokenizerFast, Trainer, TrainingArguments
+from datasets import DatasetDict
+import warnings
+warnings.filterwarnings("ignore")
 
 def train_model(learning_rate, num_train_epochs, batch_size, weight_decay, data_file):
-    model_dir = "./fine-tuned-gpt2"
-    backup_dir = f"./backup-gpt2-{time.strftime('%Y%m%d-%H%M%S')}"
+    model_dir = "./fine-tuned-bloom"  # Cambiamos el directorio del modelo
+    backup_dir = f"./backup-bloom-{time.strftime('%Y%m%d-%H%M%S')}"
 
     if os.path.exists(model_dir):
         shutil.copytree(model_dir, backup_dir)
@@ -24,10 +19,10 @@ def train_model(learning_rate, num_train_epochs, batch_size, weight_decay, data_
         logging.error("El archivo de datos está vacío.")
         return
 
-    # Cargar el modelo y el tokenizador
-    model_name = "gpt2"
-    model = GPT2LMHeadModel.from_pretrained(model_name)
-    tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+    # Cargar el modelo y el tokenizador de BLOOM
+    model_name = "bigscience/bloom-560m"
+    model = BloomForCausalLM.from_pretrained(model_name)
+    tokenizer = BloomTokenizerFast.from_pretrained(model_name)
     tokenizer.pad_token = tokenizer.eos_token
 
     # Cargar y preparar los datos
@@ -46,18 +41,16 @@ def train_model(learning_rate, num_train_epochs, batch_size, weight_decay, data_
     })
 
     # Configuración del entrenamiento
-   
     training_args = TrainingArguments(
-    output_dir=model_dir,
-    eval_strategy="epoch",  
-    learning_rate=learning_rate,
-    per_device_train_batch_size=batch_size,
-    num_train_epochs=num_train_epochs,
-    weight_decay=weight_decay,
-    logging_dir='./logs',
-    logging_steps=10,
-)
-
+        output_dir=model_dir,
+        eval_strategy="epoch",
+        learning_rate=learning_rate,
+        per_device_train_batch_size=batch_size,
+        num_train_epochs=num_train_epochs,
+        weight_decay=weight_decay,
+        logging_dir='./logs',
+        logging_steps=10,
+    )
 
     trainer = Trainer(
         model=model,
@@ -72,6 +65,3 @@ def train_model(learning_rate, num_train_epochs, batch_size, weight_decay, data_
     tokenizer.save_pretrained(model_dir)
 
     logging.info(f"Entrenamiento completado. Backup creado en {backup_dir}")
-
-if __name__ == "__main__":
-    pass

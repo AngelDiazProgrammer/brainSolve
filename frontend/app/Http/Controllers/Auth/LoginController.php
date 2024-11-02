@@ -50,4 +50,13 @@ class LoginController extends Controller
             ]);
         }
     }
+
+    public function logout(Request $request)
+{
+    Auth::logout(); // Cerrar sesión del usuario autenticado
+    $request->session()->invalidate(); // Invalidar la sesión
+    $request->session()->regenerateToken(); // Regenerar el token CSRF
+
+    return redirect('/login'); // Redirigir a la página de inicio de sesión
+}
 }

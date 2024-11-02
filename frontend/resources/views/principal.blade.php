@@ -10,20 +10,29 @@
 </head>
 <body>
     <nav>
-        <div id="box-img"><img id="robert" src="{{ asset('img/robert.png') }}" alt=""></div>
+        <div id="box-img"><img id="robert" src="{{ asset('img/Lucy.png') }}" alt=""></div>
         <div id="bienvenida"><p>Bienvenido {{ $nombre_usuario }}</p></div>
-        <div id="cerrar-sesion"><button><p>Cerrar Sesion</p></button></div>
+        <div id="cerrar-sesion">
+            <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+                @csrf
+                <button type="submit"><p>Cerrar Sesion</p></button>
+            </form>
+        </div>
     </nav>
 
-    <div class="container" id="bar-left">
-        <p><button id="cambiar-password">Cambiar Contraseña</button></p>
-        <p><button id="soportechat">Soporte Chat</button></p>
-    </div>
-
     <div id="principal-container" class="container">
-        <!-- Aquí se cargará el contenido de las vistas -->
+        <div id="box-img-principal"><img id="robert" src="{{ asset('img/LucyP.png') }}" alt=""></div>
+
+        <!-- Nuevo contenedor de tarjetas -->
+        <div id="card-container">
+            <div class="card"><button id="cambiar-password">Cambiar Contraseña</button></div>
+            <div class="card"><button id="soportechat">Soporte Chat</button></div>
+            <div class="card"><button id="entrenamiento">Entrenamiento</button></div>
+            <div class="card"><button id="rollback">Version Rollback</button></div>
+        </div>
     </div>
 
     <script src="{{ asset('js/principal.js') }}"></script>
+    <script src="{{ asset('js/chat.js') }}"></script>
 </body>
 </html>
