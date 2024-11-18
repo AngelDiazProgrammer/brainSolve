@@ -29,7 +29,7 @@ return [
     'connections' => [
 
         'default' => [
-            'hosts' => [env('LDAP_HOST', '172.27.163.36')],
+            'hosts' => [env('LDAP_HOST', '172.23.144.255')],
             'username' => env('LDAP_USERNAME', 'cn=admin,cn=Managed Service Accounts,dc=angel,dc=col'),
             'password' => env('LDAP_PASSWORD', 'Colombia2024'),
             'port' => env('LDAP_PORT', 389),

@@ -21,28 +21,34 @@ form {
 
 /* Contenedor del chat */
 #chat-container {
-    display: flex; /* Mantiene la imagen y el chat en línea */
-    align-items: flex-start; /* Alineación vertical al inicio */
-    justify-content:center; /* Centra horizontalmente */
-    margin-top: 60px; /* Margen superior para separación del encabezado */
+    display: relative; /* Mantiene la imagen y el chat en línea */
+    margin-top: 10px; /* Margen superior para separación del encabezado */
+    margin: 180px;
+    max-height: 200px;
 }
 
 /* Chat messages */
 #chat-messages {
     width: 90%;
-    max-width: 800px;
+    max-width: 800%;
     margin: 20px 0; /* Cambiar el margen para alinear mejor */
     background-color: #ffffff;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    max-height: 400px; /* Limita la altura del contenedor */
+    max-height: 200px; /* Limita la altura del contenedor */
     overflow-y: auto; /* Permite desplazamiento vertical */
+}
+
+#chat-containerchat{
+    width: 71%;
 }
 
 /* Imagen */
 #box-img-chat {
     margin-right: 20px; /* Espacio entre la imagen y el chat */
+    left: 50%;
+
 }
 
 #box-img-chat img {
@@ -87,15 +93,38 @@ form {
     color: #b22222; /* Texto rojo al pasar el cursor */
 }
 
-/* Estilo para el indicador de escritura */
-#typing-indicator {
-    display: none; /* Ocultarlo por defecto */
-    text-align: center; /* Centrar el texto */
-    margin-top: 10px; /* Espacio superior */
+/* Funcion Escribiendo */
+#chat-messages {
+    padding: 10px;
+    border-radius: 8px;
+    max-height: 400px;
+    overflow-y: auto;
+    width: 100%;
 }
 
-#dots {
-    font-size: 1.5rem; /* Ajusta el tamaño del texto */
+.message {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.message.user {
+    background-color: #dcf8c6;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.message.bot {
+    background-color: #ffffff;
+    align-self: flex-start;
+}
+
+#typing-indicator {
+    font-style: italic;
+    color: gray;
+    margin-top: 10px;
 }
 
 

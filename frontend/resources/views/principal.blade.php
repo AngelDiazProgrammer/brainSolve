@@ -34,5 +34,7 @@
 
     <script src="{{ asset('js/principal.js') }}"></script>
     <script src="{{ asset('js/chat.js') }}"></script>
+
+
 </body>
 </html>

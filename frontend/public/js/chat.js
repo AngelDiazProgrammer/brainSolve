@@ -1,25 +1,10 @@
-//Enter en el chat
+// Lógica para enviar el mensaje al presionar 'Enter'
 document.getElementById('message-input').addEventListener('keypress', function(event) {
     if (event.key === 'Enter') {
-        event.preventDefault(); // Previene el comportamiento predeterminado del Enter
-        document.getElementById('message-form').dispatchEvent(new Event('submit')); // Envía el formulario
+        event.preventDefault(); // Previene el comportamiento por defecto
+        document.getElementById('message-form').dispatchEvent(new Event('submit')); // Enviar el formulario
     }
 });
-
-document.getElementById('message-form').addEventListener('submit', function(event) {
-    event.preventDefault(); // Evita el envío del formulario
-    const messageInput = document.getElementById('message-input');
-    const message = messageInput.value.trim();
-
-    if (message) {
-        // Aquí va la lógica para enviar el mensaje (por ejemplo, AJAX o Fetch)
-        console.log(message); //imprime el mensaje en la consola
-
-        // Limpia el campo de entrada
-        messageInput.value = '';
-    }
-});
-
 
 // Función para inicializar el chat
 function initializeChat() {
@@ -29,9 +14,16 @@ function initializeChat() {
             event.preventDefault(); // Prevenir el comportamiento por defecto
 
             const input = document.getElementById('message-input');
-            const message = input.value;
+            const message = input.value.trim();
+
             if (message) {
-                // Lógica para enviar el mensaje
+                // Mostrar el mensaje del usuario inmediatamente
+                addMessageToChat(message, 'user');
+
+                // Limpiar el campo de entrada
+                input.value = '';
+
+                // Generar respuesta del bot mediante fetch
                 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content'); // Obtener el token CSRF
                 fetch('/generate', {
                     method: 'POST',
@@ -39,14 +31,34 @@ function initializeChat() {
                         'Content-Type': 'application/json',
                         'X-CSRF-TOKEN': token // Agregar el token CSRF al encabezado
                     },
-                    body: JSON.stringify({ prompt: message }),
+                    body: JSON.stringify({ prompt: message })
                 })
                 .then(response => response.json())
                 .then(data => {
-                    const chatMessages = document.getElementById('chat-messages');
-                    chatMessages.innerHTML += '<div class="message">' + data.generated_text + '</div>'; // Agregar el mensaje generado al chat
-                    input.value = ''; // Limpiar el campo de entrada
+                    // Agregar la respuesta del bot al chat
+                    addMessageToChat(data.generated_text, 'bot');
                 })
                 .catch(error => console.error('Error al procesar la solicitud:', error));
             }
-        })}};
+        });
+    }
+}
+
+// Función para agregar mensajes al chat
+function addMessageToChat(message, sender) {
+    const chatMessages = document.getElementById('chat-messages');
+
+    // Crear un nuevo elemento de mensaje
+    const messageElement = document.createElement('p');
+    messageElement.classList.add('message', sender); // 'user' o 'bot'
+    messageElement.textContent = message;
+
+    // Agregar el mensaje al contenedor
+    chatMessages.appendChild(messageElement);
+
+    // Desplazar al final del chat para mostrar el último mensaje
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Inicializa el chat al cargar la página
+initializeChat();
